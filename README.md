@@ -1,2 +1,2 @@
 # coffee-shop
-A coffee shop spring boot project
+A coffee shop spring boot project.

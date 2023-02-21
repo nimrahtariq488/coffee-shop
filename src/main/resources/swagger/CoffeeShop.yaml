@@ -1,0 +1,65 @@
+openapi: "3.0.1"
+info:
+  title: Coffee Shop APIs
+  description: This is open API specification for Coffee Shop
+  version: v1
+servers:
+  - url: coffee-shop/api
+paths:
+  /v1/menu:
+    get:
+      summary: Returns the menu.
+      description: Get menu.
+      tags:
+        - Menu
+      responses:
+        '200':    # status code
+          description: Menu returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuInfo'
+components:
+  schemas:
+    MenuInfo:
+      type: object
+      properties:
+        menuDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuDetail'
+    MenuDetail:
+      type: object
+      properties:
+        menuId:
+          type: string
+        menuName:
+          type: string
+        startDate:
+          type: date
+        endDate:
+          type: date
+        menuItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    MenuItem:
+      type: object
+      properties:
+        menuItemId:
+          type: string
+        menuItemName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: integer
+        category:
+          type: string
+          enum:
+            - 'frozenChocolate'
+            - 'classic'
+            - 'teaChiller'
+            - 'coffeeChiller'
+            - 'italianSoda'
+

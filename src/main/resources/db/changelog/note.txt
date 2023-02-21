@@ -1,0 +1,5 @@
+If database is not created, create it using:
+
+CREATE DATABASE coffeeShop;
+
+OR, use Dspring.profiles.include=dev as application VM options to use H2 in memory database.
