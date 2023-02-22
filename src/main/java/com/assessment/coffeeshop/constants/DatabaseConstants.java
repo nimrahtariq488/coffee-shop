@@ -7,6 +7,6 @@ public class DatabaseConstants {
     public static final String MENU_ITEM_CATEGORY = "MenuItemCategory";
     public static final String SALES_ORDER = "SalesOrder";
     public static final String ORDER_ITEM = "OrderItem";
-
-    public static final String USER = "User";
+    public static final String ORDER_STATUS = "OrderStatus";
+    public static final String CUSTOMER = "Customer";
 }

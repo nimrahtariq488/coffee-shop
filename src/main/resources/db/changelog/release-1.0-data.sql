@@ -1,9 +1,10 @@
 -- add some initial transactions for testing
-INSERT INTO User (UserId, FullName, Email)
+INSERT INTO Customer (CustomerId, FullName, Email, PhoneNumber)
 VALUES
-('user1', 'Test user 1', 'testuser1@gmail.com'),
-('user2', 'Test user 2', 'testuser2@gmail.com'),
-('user3', 'Test user 3', 'testuser3@gmail.com');
+('customer1', 'Test user 1', 'testuser1@gmail.com', '+923390878909'),
+('customer2', 'Test user 2', 'testuser2@gmail.com', '+923111111111'),
+('customer3', 'Test user 3', 'testuser3@gmail.com', '+923334567890');
+
 
 INSERT INTO MenuItemCategory (CategoryId, Description)
 VALUES
@@ -13,18 +14,44 @@ VALUES
     ('italianSoda', 'Italian Soda'),
     ('teaChiller', 'Tea Chiller');
 
+
+INSERT INTO OrderStatus (OrderStatusId, Description)
+VALUES
+    ('placed', 'Placed'),
+    ('preparing', 'Preparing'),
+    ('delivered', 'Delivered'),
+    ('cancelled', 'Cancelled');
+
+
 INSERT INTO Menu (Name, StartDate, EndDate)
 VALUES ('The Coffee Shop', '2022-12-31', '2024-12-31');
 
-INSERT INTO MenuItem (Name, Quantity, Price, CategoryId, MenuId)
+
+INSERT INTO MenuItem (MenuItemId, Name, Quantity, Price, CategoryId, MenuId)
 VALUES
-('Strawberry Soda', 10, 750, 'italianSoda', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Blueberry Soda', 4, 750, 'italianSoda', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Classic Hot Chocolate', 9, 750, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Cookies & Cream Frozen Chocolate', 10, 850, 'frozenChocolate', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Cappuccino', 15, 750, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Tea Latte', 18, 850, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Espresso', 10, 850, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Green Tea', 4, 750, 'teaChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Icepresso', 3, 850, 'coffeeChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
-('Chillatte', 10, 850, 'coffeeChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop'));
+(1, 'Strawberry Soda', 10, 750.0000, 'italianSoda', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(2, 'Blueberry Soda', 4, 750.0000, 'italianSoda', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(3, 'Classic Hot Chocolate', 9, 750.0000, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(4, 'Cookies & Cream Frozen Chocolate', 10, 850.0000, 'frozenChocolate', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(5, 'Cappuccino', 15, 750.0000, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(6, 'Tea Latte', 18, 850.0000, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(7, 'Espresso', 10, 850.0000, 'classic', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(8, 'Green Tea', 4, 749.9900, 'teaChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(9, 'Icepresso', 3, 850.0000, 'coffeeChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop')),
+(10, 'Chillatte', 10, 850.0000, 'coffeeChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop'));
+
+
+INSERT INTO SalesOrder (OrderId, OrderDate, CustomerId, TotalAmount, OrderStatusId)
+VALUES (1, NOW(), 'customer1', 749.9900, 'delivered'),
+       (2, '2022-12-31', 'customer2', 850.00, 'delivered'),
+       (3, NOW(), 'customer3', 2550.0000, 'preparing'),
+       (4, NOW(), 'customer1', 750.0000, 'placed');
+
+
+INSERT INTO OrderItem (OrderItemId, Quantity, Price, OrderId, MenuItemId)
+VALUES (1, 1, 749.9900, 1, 8),
+       (2, 1, 850.0000, 2, 6),
+       (3, 1, 850.0000, 3, 7),
+       (4, 2, 1700.0000, 3, 10),
+       (5, 1, 750.0000, 4, 1);
+

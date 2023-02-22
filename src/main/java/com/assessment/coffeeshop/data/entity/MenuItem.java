@@ -1,10 +1,10 @@
 package com.assessment.coffeeshop.data.entity;
 
 import com.assessment.coffeeshop.constants.DatabaseConstants;
-import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -14,17 +14,20 @@ import java.math.BigDecimal;
 public class MenuItem {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="MenuItemId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MenuItemId", nullable = false)
     private Integer menuItemId;
-    @Column(name="Name", nullable = false, length = 50)
+
+    @Column(name = "Name", nullable = false, length = 50)
     private String name;
-    @Column(name="Quantity", nullable = false)
+
+    @Column(name = "Quantity", nullable = false)
     private Integer quantity;
-    @Column(name="Price", nullable = false)
+
+    @Column(name = "Price", nullable = false)
     private BigDecimal price;
 
-    @JoinColumn(name="CategoryId")
+    @JoinColumn(name = "CategoryId")
     @OneToOne(fetch = FetchType.LAZY)
     private MenuItemCategory category;
 

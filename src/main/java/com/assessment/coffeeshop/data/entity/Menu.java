@@ -17,16 +17,17 @@ import java.util.List;
 public class Menu {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="MenuId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MenuId", nullable = false)
+
     private Integer menuId;
-    @Column(name="Name", nullable = false, length = 50)
+    @Column(name = "Name", nullable = false, length = 50)
     private String name;
 
-    @Column(name="StartDate", nullable = false)
+    @Column(name = "StartDate", nullable = false)
     private LocalDate startDate;
 
-    @Column(name="EndDate", nullable = false)
+    @Column(name = "EndDate", nullable = false)
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY,

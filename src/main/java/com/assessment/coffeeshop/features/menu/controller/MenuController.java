@@ -15,6 +15,9 @@ public class MenuController {
 
     private final RetrieveMenuService retrieveMenuService;
 
+    /**
+     * Class constructor to inject dependencies.
+     */
     public MenuController(RetrieveMenuService retrieveMenuService) {
         this.retrieveMenuService = retrieveMenuService;
     }

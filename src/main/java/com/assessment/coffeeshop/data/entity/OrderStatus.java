@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = DatabaseConstants.MENU_ITEM_CATEGORY)
+@Table(name = DatabaseConstants.ORDER_STATUS)
 @Setter
 @Getter
-public class MenuItemCategory {
+public class OrderStatus {
     @Id
-    @Column(name = "CategoryId", length = 50, nullable = false)
-    private String categoryId;
+    @Column(name = "OrderStatusId", length = 50, nullable = false)
+    private String orderStatusId;
 
     @Column(name = "Description", nullable = false, length = 250)
     private String description;

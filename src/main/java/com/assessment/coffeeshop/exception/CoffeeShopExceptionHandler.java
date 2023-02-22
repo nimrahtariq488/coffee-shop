@@ -1,9 +1,5 @@
 package com.assessment.coffeeshop.exception;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +7,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @ControllerAdvice
 public class CoffeeShopExceptionHandler {
@@ -50,9 +50,9 @@ public class CoffeeShopExceptionHandler {
         return ResponseEntity
                 .status(status)
                 .body(generateError(
-                        String.valueOf(status),
-                        exception.getMessage(),
-                        String.valueOf(exception.getCause())
+                                String.valueOf(status),
+                                exception.getMessage(),
+                                String.valueOf(exception.getCause())
                         )
                 );
     }

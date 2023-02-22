@@ -1,10 +1,11 @@
-CREATE TABLE User(
+CREATE TABLE Customer(
 
-                      UserId VARCHAR(10) NOT NULL,
+                      CustomerId VARCHAR(10) NOT NULL,
                       FullName VARCHAR(250) NOT NULL,
-                      Email VARCHAR(250) NOT NULL,
+                      Email VARCHAR(250),
+                      PhoneNumber VARCHAR(13),
 
-                      PRIMARY KEY (UserId)
+                      PRIMARY KEY (CustomerId)
 );
 
 
@@ -14,6 +15,14 @@ CREATE TABLE MenuItemCategory (
                     Description VARCHAR(250) NOT NULL,
 
                     PRIMARY KEY (CategoryId)
+);
+
+CREATE TABLE OrderStatus (
+
+                            OrderStatusId VARCHAR(50) NOT NULL,
+                            Description VARCHAR(250) NOT NULL,
+
+                            PRIMARY KEY (OrderStatusId)
 );
 
 CREATE TABLE Menu (
@@ -43,11 +52,13 @@ CREATE TABLE MenuItem (
 CREATE TABLE SalesOrder (
                       OrderId INT NOT NULL AUTO_INCREMENT,
                       OrderDate DATE NOT NULL,
-                      UserId VARCHAR(10) NOT NULL,
+                      CustomerId VARCHAR(10) NOT NULL,
                       TotalAmount DECIMAL(16,4),
+                      OrderStatusId VARCHAR(50) NOT NULL,
 
                       PRIMARY KEY (OrderId),
-                      FOREIGN KEY (UserId) REFERENCES User(UserId)
+                      FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
+                      FOREIGN KEY (OrderStatusId) REFERENCES OrderStatus(OrderStatusId)
 
 );
 

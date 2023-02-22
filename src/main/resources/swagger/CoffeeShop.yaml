@@ -19,6 +19,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MenuInfo'
+  /v1/order:
+    post:
+      summary: Place an order from menu.
+      description: Place an order from menu.
+      tags:
+        - Order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':    # status code
+          description: Order placed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderInfo'
 components:
   schemas:
     MenuInfo:
@@ -36,9 +55,11 @@ components:
         menuName:
           type: string
         startDate:
-          type: date
+          type: string
+          format: date
         endDate:
-          type: date
+          type: string
+          format: date
         menuItems:
           type: array
           items:
@@ -62,4 +83,36 @@ components:
             - 'teaChiller'
             - 'coffeeChiller'
             - 'italianSoda'
-
+    OrderRequest:
+      type: object
+      required: [customerId, menuItems]
+      properties:
+        customerId:
+          type: string
+        menuItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItemRequest'
+    MenuItemRequest:
+      type: object
+      required: [menuItemId, quantity]
+      properties:
+        menuItemId:
+          type: integer
+        quantity:
+          type: integer
+          minimum: 1
+    OrderInfo:
+      type: object
+      properties:
+        customerId:
+          type: string
+        orderId:
+          type: integer
+        status:
+          type: string
+          enum:
+            - 'placed'
+            - 'preparing'
+            - 'delivered'
+            - 'cancelled'

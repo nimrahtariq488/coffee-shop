@@ -1,11 +1,11 @@
 package com.assessment.coffeeshop.data.entity;
 
 import com.assessment.coffeeshop.constants.DatabaseConstants;
-import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.ObjectUtils;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,16 +18,23 @@ import java.util.List;
 public class SalesOrder {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="OrderId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "OrderId", nullable = false)
     private Integer orderId;
-    @Column(name="OrderDate", nullable = false)
+
+    @Column(name = "OrderDate", nullable = false)
     private LocalDate date;
-    @JoinColumn(name="UserId", nullable = false)
+
+    @JoinColumn(name = "CustomerId", nullable = false)
     @ManyToOne()
-    private User user;
-    @Column(name="TotalAmount", nullable = false)
+    private Customer customer;
+
+    @Column(name = "TotalAmount", nullable = false)
     private BigDecimal totalAmount;
+
+    @JoinColumn(name = "OrderStatusId")
+    @OneToOne(fetch = FetchType.LAZY)
+    private OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
@@ -37,7 +44,7 @@ public class SalesOrder {
     /**
      * To add order to its child objects order items
      */
-    public void addMenuItems(OrderItem child) {
+    public void addOrderItems(OrderItem child) {
         child.setOrder(this);
 
         if (ObjectUtils.isEmpty(this.orderItems)) {
