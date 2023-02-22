@@ -26,7 +26,7 @@ CREATE TABLE OrderStatus (
 );
 
 CREATE TABLE Menu (
-                      MenuId INT NOT NULL AUTO_INCREMENT,
+                      MenuId SERIAL,
                       Name VARCHAR(50) NOT NULL,
                       StartDate DATE NOT NULL,
                       EndDate DATE NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE Menu (
 );
 
 CREATE TABLE MenuItem (
-                          MenuItemId INT NOT NULL AUTO_INCREMENT,
+                          MenuItemId SERIAL,
                           Name VARCHAR(50) NOT NULL,
                           Quantity INT NOT NULL,
                           Price DECIMAL(16,4),
@@ -50,7 +50,7 @@ CREATE TABLE MenuItem (
 );
 
 CREATE TABLE SalesOrder (
-                      OrderId INT NOT NULL AUTO_INCREMENT,
+                      OrderId SERIAL,
                       OrderDate DATE NOT NULL,
                       CustomerId VARCHAR(10) NOT NULL,
                       TotalAmount DECIMAL(16,4),
@@ -63,7 +63,7 @@ CREATE TABLE SalesOrder (
 );
 
 CREATE TABLE OrderItem (
-                          OrderItemId INT NOT NULL AUTO_INCREMENT,
+                          OrderItemId SERIAL,
                           Quantity INT NOT NULL,
                           Price DECIMAL(16,4),
                           OrderId INT NOT NULL,
@@ -73,5 +73,3 @@ CREATE TABLE OrderItem (
                           FOREIGN KEY (OrderId) REFERENCES SalesOrder(OrderId),
                           FOREIGN KEY (MenuItemId) REFERENCES MenuItem(MenuItemId)
 );
-
-

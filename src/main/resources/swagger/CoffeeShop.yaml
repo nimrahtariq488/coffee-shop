@@ -6,7 +6,7 @@ info:
 servers:
   - url: coffee-shop/api
 paths:
-  /v1/menu:
+  /v1/menus:
     get:
       summary: Returns the menu.
       description: Get menu.
@@ -19,7 +19,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MenuInfo'
-  /v1/order:
+  /v1/orders:
     post:
       summary: Place an order from menu.
       description: Place an order from menu.

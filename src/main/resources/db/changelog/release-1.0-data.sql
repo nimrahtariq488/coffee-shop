@@ -41,17 +41,14 @@ VALUES
 (10, 'Chillatte', 10, 850.0000, 'coffeeChiller', (SELECT MenuId FROM Menu WHERE Name = 'The Coffee Shop'));
 
 
-INSERT INTO SalesOrder (OrderId, OrderDate, CustomerId, TotalAmount, OrderStatusId)
-VALUES (1, NOW(), 'customer1', 749.9900, 'delivered'),
-       (2, '2022-12-31', 'customer2', 850.00, 'delivered'),
-       (3, NOW(), 'customer3', 2550.0000, 'preparing'),
-       (4, NOW(), 'customer1', 750.0000, 'placed');
+INSERT INTO SalesOrder (OrderDate, CustomerId, TotalAmount, OrderStatusId)
+VALUES (NOW(), 'customer1', 749.9900, 'delivered'),
+       ('2022-12-31', 'customer2', 850.00, 'delivered'),
+       (NOW(), 'customer3', 2550.0000, 'preparing'),
+       (NOW(), 'customer1', 750.0000, 'placed');
 
 
-INSERT INTO OrderItem (OrderItemId, Quantity, Price, OrderId, MenuItemId)
-VALUES (1, 1, 749.9900, 1, 8),
-       (2, 1, 850.0000, 2, 6),
-       (3, 1, 850.0000, 3, 7),
-       (4, 2, 1700.0000, 3, 10),
-       (5, 1, 750.0000, 4, 1);
+INSERT INTO OrderItem (Quantity, Price, OrderId, MenuItemId)
+VALUES (1, 749.9900, (SELECT OrderId FROM SalesOrder WHERE CustomerId = 'customer3'), (SELECT MenuItemId FROM MenuItem WHERE Name = 'Green Tea')),
+       (1, 850.0000, (SELECT OrderId FROM SalesOrder WHERE CustomerId = 'customer2'), (SELECT MenuItemId FROM MenuItem WHERE Name = 'Tea Latte'));
 

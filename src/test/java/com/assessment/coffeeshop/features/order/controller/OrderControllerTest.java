@@ -30,7 +30,7 @@ public class OrderControllerTest {
 
 
         when(placeOrderService.placeOrder(any())).thenReturn(CoffeeShopDataProvider.getOrderInfo());
-        mockMvc.perform(post("/api/v1/order")
+        mockMvc.perform(post("/api/v1/orders")
                         .content("{" +
                                 "  \"customerId\": \"customer1\"," +
                                 "  \"menuItems\": [" +
@@ -51,7 +51,7 @@ public class OrderControllerTest {
     void test_returnMenu_error() throws Exception {
 
         when(placeOrderService.placeOrder(any())).thenThrow(new CoffeeShopException("404", "Menu item not found!"));
-        mockMvc.perform(post("/api/v1/order")
+        mockMvc.perform(post("/api/v1/orders")
                         .content("{" +
                                 "  \"customerId\": \"customer1\"," +
                                 "  \"menuItems\": [" +

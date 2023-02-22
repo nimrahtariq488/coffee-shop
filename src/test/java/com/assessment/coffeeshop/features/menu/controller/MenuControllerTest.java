@@ -30,7 +30,7 @@ public class MenuControllerTest {
     void test_returnMenu_success() throws Exception {
 
         when(retrieveMenuService.getMenu()).thenReturn(CoffeeShopDataProvider.getMenuInfo());
-        mockMvc.perform(get("/api/v1/menu"))
+        mockMvc.perform(get("/api/v1/menus"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.menuDetails[0].menuId").value(1))
                 .andExpect(jsonPath("$.menuDetails[0].menuName").value("Coffee Shop Test Menu"))
@@ -47,7 +47,7 @@ public class MenuControllerTest {
     void test_returnMenu_error() throws Exception {
 
         when(retrieveMenuService.getMenu()).thenThrow(new CoffeeShopException("404", "Menu not found!"));
-        mockMvc.perform(get("/api/v1/menu"))
+        mockMvc.perform(get("/api/v1/menus"))
                 .andExpect(status().is4xxClientError());
     }
 
