@@ -51,7 +51,7 @@ components:
       type: object
       properties:
         menuId:
-          type: string
+          type: integer
         menuName:
           type: string
         startDate:
@@ -68,13 +68,14 @@ components:
       type: object
       properties:
         menuItemId:
-          type: string
+          type: integer
         menuItemName:
           type: string
         quantity:
           type: integer
         price:
-          type: integer
+          type: number
+          multipleOf: 0.0001
         category:
           type: string
           enum:
