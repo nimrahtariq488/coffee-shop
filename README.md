@@ -1,5 +1,11 @@
 # coffee-shop
-A coffee shop spring boot project.
+A coffee shop spring boot project. It included the following:
+    
+ 1. Swagger documentation
+ 2. View menu and create order features
+ 3. Unit test coverage of the added features
+ 4. H2 database configured using PostgreSQL 
+ 5. Sample data setup using liquibase
 
 ## Development
 
